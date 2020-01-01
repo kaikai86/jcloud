@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b29c02ce-ce16-40b4-84fc-6b4104046eb8" name="Default Changelist" comment="" />
+    <list default="true" id="b29c02ce-ce16-40b4-84fc-6b4104046eb8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +22,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="F:\workspace\idea-workspace\amzerp\.idea" />
+      </set>
+    </option>
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -26,6 +37,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1Vn5MyotQK1gfrqyb9jFRUKepmY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -33,6 +45,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
@@ -58,6 +71,7 @@
       <recent name="org.zk.amzerp" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\workspace\idea-workspace\amzerp" />
       <recent name="F:\workspace\idea-workspace\amzerp\common-web\src\main\java\org\zk\amzerp\controller\filter" />
       <recent name="F:\workspace\idea-workspace\amzerp\web-manager\src\main\resources" />
       <recent name="F:\workspace\idea-workspace\amzerp\service-system\src\main\resources" />
@@ -76,7 +90,7 @@
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -88,12 +102,24 @@
       <workItem from="1577875979556" duration="538000" />
       <workItem from="1577876605457" duration="6737000" />
       <workItem from="1577889400281" duration="821000" />
-      <workItem from="1577890240567" duration="8438000" />
+      <workItem from="1577890240567" duration="8791000" />
     </task>
+    <task id="LOCAL-00001" summary="初始化框架">
+      <created>1577900408138</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1577900408138</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="初始化框架" />
+    <option name="LAST_COMMIT_MESSAGE" value="初始化框架" />
   </component>
   <component name="WindowStateProjectService">
     <state x="582" y="182" key="#HTTP_Proxy" timestamp="1577889778926">
@@ -116,6 +142,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="886" y="218" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1577895613955" />
+    <state x="422" y="103" key="CommitChangelistDialog2" timestamp="1577900531713">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="422" y="103" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1577900531713" />
     <state x="913" y="278" key="FileChooserDialogImpl" timestamp="1577900289777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -140,6 +170,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="493" y="153" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1577890194252" />
+    <state x="464" y="242" key="Vcs.Push.Dialog.v2" timestamp="1577900411361">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="464" y="242" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577900411361" />
     <state x="838" y="217" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1577895961826">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
