@@ -1,7 +1,6 @@
 package org.zk.amzerp.controller.filter;
 
-import lombok.extern.apachecommons.CommonsLog;
-import org.apache.commons.lang.StringUtils;
+import cn.hutool.core.util.StrUtil;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author haozi
  *
  */
-@CommonsLog
 @Component
 public class PageParamInterceptor implements HandlerInterceptor {
     final static String HAS_PAGE = "hasPage";
@@ -35,18 +33,18 @@ public class PageParamInterceptor implements HandlerInterceptor {
         String pageSizeInUrl = request.getParameter(PAGE_SIZE);
         boolean hasPageNumber = true;
         boolean hasPageSize = true;
-        if (StringUtils.isBlank(pageNumberInHeader) && StringUtils.isBlank(pageNumberInUrl)) {
+        if (StrUtil.isBlank(pageNumberInHeader) && StrUtil.isBlank(pageNumberInUrl)) {
             hasPageNumber = false;
             MDC.put(PAGE_NUMBER, String.valueOf(pageNumber));
         } else {
-            String pageNumberInThread = StringUtils.isBlank(pageNumberInUrl) ? pageNumberInHeader : pageNumberInUrl;// 优先使用url中参数
+            String pageNumberInThread = StrUtil.isBlank(pageNumberInUrl) ? pageNumberInHeader : pageNumberInUrl;// 优先使用url中参数
             MDC.put(PAGE_NUMBER, pageNumberInThread);
         }
-        if (StringUtils.isBlank(pageSizeInHeader) && StringUtils.isBlank(pageSizeInUrl)) {
+        if (StrUtil.isBlank(pageSizeInHeader) && StrUtil.isBlank(pageSizeInUrl)) {
             hasPageSize = false;
             MDC.put(PAGE_SIZE, String.valueOf(pageSize));
         } else {
-            String pageSizeInThread = StringUtils.isBlank(pageSizeInUrl) ? pageSizeInHeader : pageSizeInUrl;// 优先使用url中参数
+            String pageSizeInThread = StrUtil.isBlank(pageSizeInUrl) ? pageSizeInHeader : pageSizeInUrl;// 优先使用url中参数
             MDC.put(PAGE_SIZE, pageSizeInThread);
         }
         if(hasPageNumber || hasPageSize){
@@ -65,7 +63,7 @@ public class PageParamInterceptor implements HandlerInterceptor {
          * 如未用@ResponseBody则在此处理，
          * 否则在@see PageParamAdvice 处理
          */
-        if (StringUtils.isBlank(response.getHeader(TOTAL_PAGE)) && StringUtils.isNotBlank(MDC.get(TOTAL_PAGE))) {
+        if (StrUtil.isBlank(response.getHeader(TOTAL_PAGE)) && StrUtil.isNotBlank(MDC.get(TOTAL_PAGE))) {
             response.addHeader(TOTAL_PAGE, MDC.get(TOTAL_PAGE));
         }
     }

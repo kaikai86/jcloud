@@ -1,41 +1,62 @@
 package org.zk.amzerp.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.zk.amzerp.dao.BaseMapper;
 import org.zk.amzerp.model.DataModel;
 import org.zk.amzerp.service.BaseService;
 import tk.mybatis.mapper.entity.Example;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
-public class BaseServiceImpl<T extends DataModel> implements BaseService<T> {
+public class BaseServiceImpl<DTO,PO extends DataModel> implements BaseService<DTO,PO> {
 
     @Autowired
-    BaseMapper<T> baseMapper;
+    BaseMapper<PO> baseMapper;
 
     @Override
-    public boolean add(T t) {
-        t.setStatus("A");
-        t.setCreateTime(new Date());
-       return baseMapper.insert(t) == 0?false:true;
+    public boolean add(DTO dto) {
+        PO po = null;
+        try {
+            Class<PO> entityClass = (Class<PO>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+            po = entityClass.getConstructor().newInstance();
+            BeanUtil.copyProperties(dto, po);
+            po.setStatus("A");
+            po.setCreateTime(new Date());
+        } catch (Exception e) {
+
+        }
+
+       return baseMapper.insert(po) == 0?false:true;
     }
 
     @Override
-    public boolean update(T t) {
-        Example example = new Example(t.getClass());
-        example.createCriteria().andEqualTo("status","A").andEqualTo("id",t.getId());
-        t.setUpdateTime(new Date());
-        return baseMapper.updateByExample(t,example) == 0?false:true;
+    public boolean update(BigInteger id,DTO dto) {
+        PO po = null;
+        Example example = null;
+        try {
+            Class<PO> entityClass = (Class<PO>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+            po = entityClass.getConstructor().newInstance();
+            BeanUtil.copyProperties(dto, po);
+            example = new Example(po.getClass());
+            example.createCriteria().andEqualTo("status","A").andEqualTo("id",id);
+            po.setUpdateTime(new Date());
+        } catch (Exception e) {
+
+        }
+        return baseMapper.updateByExample(po,example) == 0?false:true;
     }
 
     @Override
     public boolean delete(BigInteger id) {
-        T t = findOne(id);
+        PO t = findOne(id);
         if(t == null){
             return false;
         }
@@ -44,23 +65,23 @@ public class BaseServiceImpl<T extends DataModel> implements BaseService<T> {
     }
 
     @Override
-    public T findOne(BigInteger id) {
-        Class<T> entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    public PO findOne(BigInteger id) {
+        Class<PO> entityClass = (Class<PO>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
         Example example = new Example(entityClass);
         example.createCriteria().andEqualTo("status","A").andEqualTo("id",id);
         return baseMapper.selectOneByExample(example);
     }
 
     @Override
-    public List<T> selectAll() {
-        Class<T> entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    public List<PO> selectAll() {
+        Class<PO> entityClass = (Class<PO>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
         Example example = new Example(entityClass);
         example.createCriteria().andEqualTo("status","A");
         return baseMapper.selectByExample(example);
     }
 
     @Override
-    public PageInfo<T> selectAllPage(int pageNum, int pageSize) {
+    public PageInfo<PO> selectAllPage(int pageNum, int pageSize) {
         return PageHelper.startPage(pageNum, pageSize).setOrderBy("id desc").doSelectPageInfo(() -> selectAll());
     }
 }
