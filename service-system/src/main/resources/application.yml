@@ -38,6 +38,13 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: status  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
+      logic-delete-value: D # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: A # 逻辑未删除值(默认为 0)
+
 info:
   app.name: service-system
   company.name: org.zk.amzerp

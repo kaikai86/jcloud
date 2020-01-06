@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 处理通用分页参数
  * 
- * @author haozi
+ * @author zhangkai
  *
  */
 @Component
@@ -63,9 +63,9 @@ public class PageParamInterceptor implements HandlerInterceptor {
          * 如未用@ResponseBody则在此处理，
          * 否则在@see PageParamAdvice 处理
          */
-        if (StrUtil.isBlank(response.getHeader(TOTAL_PAGE)) && StrUtil.isNotBlank(MDC.get(TOTAL_PAGE))) {
-            response.addHeader(TOTAL_PAGE, MDC.get(TOTAL_PAGE));
-        }
+//        if (StrUtil.isBlank(response.getHeader(TOTAL_PAGE)) && StrUtil.isNotBlank(MDC.get(TOTAL_PAGE))) {
+//            response.addHeader(TOTAL_PAGE, MDC.get(TOTAL_PAGE));
+//        }
     }
 
     @Override

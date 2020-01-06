@@ -8,4 +8,8 @@ import java.math.BigInteger;
 public class SystemDictDTO {
 
     private String name;
+
+    private String description;
+
+    private Integer orders;
 }

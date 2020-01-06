@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>common-web</artifactId>
+    <packaging>jar</packaging>
+
     <dependencies>
         <!-- common -->
         <dependency>

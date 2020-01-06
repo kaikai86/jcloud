@@ -1,6 +1,8 @@
-package org.zk.amzerp.service;
+package org.zk.amzerp.service.base;
 
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,10 +28,10 @@ public interface BaseService<DTO,PO extends DataModel> {
     @RequestMapping(value="/findOne",method = RequestMethod.GET)
     PO findOne(@RequestParam("id") BigInteger id);
 
-    @RequestMapping(value="/findAll",method = RequestMethod.GET)
+    @RequestMapping(value="/selectAll",method = RequestMethod.GET)
     List<PO> selectAll();
 
-    @RequestMapping("/selectAllPage")
-    PageInfo<PO> selectAllPage(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize);
+    @RequestMapping(value="/selectAllPage",method = RequestMethod.POST)
+    Page<PO> selectAllPage(@RequestBody Page<PO> page);
 
 }
