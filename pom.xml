@@ -4,30 +4,30 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <modules>
-    <module>common</module>
-    <module>common-dao</module>
-    <module>common-service</module>
-    <module>common-web</module>
-    <module>common-model</module>
-    <module>service-system</module>
-    <module>common-client</module>
-    <module>web-api</module>
-    <module>eureka-server</module>
+    <module>jcloud-common</module>
+    <module>jcloud-common-dao</module>
+    <module>jcloud-common-service</module>
+    <module>jcloud-common-web</module>
+    <module>jcloud-common-model</module>
+    <module>jcloud-service-system</module>
+    <module>jcloud-common-client</module>
+    <module>jcloud-web-api</module>
+    <module>jcloud-eureka-server</module>
   </modules>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.2.1.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <version>2.2.2.RELEASE</version>
+    <relativePath/>
   </parent>
 
 
-  <groupId>org.zk.amzerp</groupId>
-  <artifactId>amzerp</artifactId>
+  <groupId>org.jcloud</groupId>
+  <artifactId>jcloud-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>amzerp</name>
+  <name>jcloud-parent</name>
 
   <properties>
     <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
@@ -53,91 +53,55 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
-<!--  <build>-->
-<!--    <pluginManagement>&lt;!&ndash; lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) &ndash;&gt;-->
-<!--      <plugins>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-clean-plugin</artifactId>-->
-<!--          <version>3.1.0</version>-->
-<!--        </plugin>-->
-<!--        &lt;!&ndash; see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging &ndash;&gt;-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-resources-plugin</artifactId>-->
-<!--          <version>3.0.2</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-compiler-plugin</artifactId>-->
-<!--          <version>3.8.0</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-surefire-plugin</artifactId>-->
-<!--          <version>2.22.1</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-war-plugin</artifactId>-->
-<!--          <version>3.2.2</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-install-plugin</artifactId>-->
-<!--          <version>2.5.2</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-deploy-plugin</artifactId>-->
-<!--          <version>2.8.2</version>-->
-<!--        </plugin>-->
-<!--      </plugins>-->
-<!--    </pluginManagement>-->
-<!--  </build>-->
-      <build>
-        <resources>
-          <resource>
-            <directory>src/main/resources</directory>
-            <filtering>true</filtering>
-          </resource>
-        </resources>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
-            <configuration>
-              <delimiters>
-                <delimit>$</delimit>
-              </delimiters>
-            </configuration>
-          </plugin>
-          <!-- 指定JDK编译版本 -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <source>1.8</source>
-              <target>1.8</target>
-              <encoding>UTF-8</encoding>
-            </configuration>
-          </plugin>
-          <!-- 打包跳过测试 -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <skipTests>true</skipTests>
-            </configuration>
-          </plugin>
-          <!-- 避免font文件的二进制文件格式压缩破坏 -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
-            <configuration>
-              <nonFilteredFileExtensions>
-                <nonFilteredFileExtension>woff</nonFilteredFileExtension>
-                <nonFilteredFileExtension>woff2</nonFilteredFileExtension>
-                <nonFilteredFileExtension>eot</nonFilteredFileExtension>
-                <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
-                <nonFilteredFileExtension>svg</nonFilteredFileExtension>
-              </nonFilteredFileExtensions>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <delimiters>
+            <delimit>$</delimit>
+          </delimiters>
+        </configuration>
+      </plugin>
+      <!-- 指定JDK编译版本 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <!-- 打包跳过测试 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+      <!-- 避免font文件的二进制文件格式压缩破坏 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <nonFilteredFileExtensions>
+            <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+            <nonFilteredFileExtension>woff2</nonFilteredFileExtension>
+            <nonFilteredFileExtension>eot</nonFilteredFileExtension>
+            <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+            <nonFilteredFileExtension>svg</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

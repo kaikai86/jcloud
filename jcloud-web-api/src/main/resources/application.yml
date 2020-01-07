@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: web-manager
+
+server:
+  port: 8080
+
+##eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka
+
+  instance:
+    instance-id: web-manager
+    prefer-ip-address: true
+
+info:
+  app.name: web-manager
+  company.name: org.jcloud
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
