@@ -15,7 +15,7 @@ public class WebAppConfig extends WebMvcConfigurationSupport {
 	public void addInterceptors(InterceptorRegistry registry) {
 		super.addInterceptors(registry);
         // 通用分页参数处理
-        registry.addInterceptor(new PageParamInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(pageParamInterceptor).addPathPatterns("/**");
 	}
 
 }

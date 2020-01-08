@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.jcloud.model.DataModel;
+import org.jcloud.model.base.DataModel;
 
 import java.lang.reflect.ParameterizedType;
 import java.math.BigInteger;
@@ -60,7 +60,6 @@ public class BaseServiceImpl<M extends BaseMapper<PO>,DTO,PO extends DataModel> 
 
     @Override
     public Page<PO> selectAllPage(Page<PO> page) {
-        System.err.println(page.getSize()+",,,"+page.getPages());
         return this.page(page);
     }
 }

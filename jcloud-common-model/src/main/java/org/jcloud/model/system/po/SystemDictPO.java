@@ -2,7 +2,7 @@ package org.jcloud.model.system.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import org.jcloud.model.DataModel;
+import org.jcloud.model.base.DataModel;
 
 
 @Data

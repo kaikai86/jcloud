@@ -2,6 +2,7 @@ package org.jcloud.controller.system;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.jcloud.controller.api.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.jcloud.client.system.SystemDictService;
@@ -10,6 +11,7 @@ import org.jcloud.model.system.dto.SystemDictDTO;
 import org.jcloud.model.system.po.SystemDictPO;
 
 import java.math.BigInteger;
+import java.util.List;
 
 @RestController
 @RequestMapping("/system")
@@ -19,15 +21,11 @@ public class SystemDictController {
     private SystemDictService systemDictService;
 
     @GetMapping("/dicts")
-    public Object findAll() {
-        Page<SystemDictPO> page = PageParamContextHelper.getPage(SystemDictPO.class);
-        Object systemDictPOIPage = null;
-        if (ObjectUtil.isNotNull(page)) {
-            systemDictPOIPage = systemDictService.selectAllPage(page);
-        }else{
-            systemDictPOIPage = systemDictService.selectAll();
-        }
-        return systemDictPOIPage;
+    public Result<List<SystemDictPO>> findAll() {
+        List<SystemDictPO> systemDictPOS = PageParamContextHelper.endPage( systemDictService.selectAllPage(PageParamContextHelper.startPage(SystemDictPO.class)));
+        Result<List<SystemDictPO>> pageResult = new Result<>();
+        pageResult.setResult(systemDictPOS);
+        return pageResult;
     }
 
     @GetMapping("/dicts/{id}")

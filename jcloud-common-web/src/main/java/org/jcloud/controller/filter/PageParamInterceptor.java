@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static org.jcloud.controller.constant.WebConstant.*;
+
 /**
  * 处理通用分页参数
  * 
@@ -17,10 +19,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 public class PageParamInterceptor implements HandlerInterceptor {
-    final static String HAS_PAGE = "hasPage";
-    final static String PAGE_NUMBER = "pageNumber";
-    final static String PAGE_SIZE = "pageSize";
-    final static String TOTAL_PAGE = "totalPage";
 
     private int pageNumber = 1;// 默认查询第一页
     private int pageSize = 10;// 默认每页10条
@@ -63,9 +61,9 @@ public class PageParamInterceptor implements HandlerInterceptor {
          * 如未用@ResponseBody则在此处理，
          * 否则在@see PageParamAdvice 处理
          */
-//        if (StrUtil.isBlank(response.getHeader(TOTAL_PAGE)) && StrUtil.isNotBlank(MDC.get(TOTAL_PAGE))) {
-//            response.addHeader(TOTAL_PAGE, MDC.get(TOTAL_PAGE));
-//        }
+        if (StrUtil.isBlank(response.getHeader(TOTAL_PAGE)) && StrUtil.isNotBlank(MDC.get(TOTAL_PAGE))) {
+            response.addHeader(TOTAL_PAGE, MDC.get(TOTAL_PAGE));
+        }
     }
 
     @Override

@@ -1,7 +1,10 @@
 package org.jcloud.controller.util;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.jcloud.controller.constant.WebConstant;
 import org.slf4j.MDC;
+
+import java.util.List;
 
 /**
  * 上下文帮助类
@@ -12,19 +15,25 @@ import org.slf4j.MDC;
 public class PageParamContextHelper {
 
 
-    public static <PO> Page<PO> getPage(Class<PO> clazz) {
+    public static <PO> Page<PO> startPage(Class<PO> clazz) {
         if (!PageParam.hasPage()) {
-            return null;
+            return new Page<PO>();
         }
         Integer pageNumer = PageParam.getPageNumer();
         Integer pageSize = PageParam.getPageSize();
         return new Page<>(pageSize, pageNumer);
     }
 
+    public static <PO> List<PO> endPage(Page<PO> page) {
+        MDC.put(WebConstant.TOTAL_PAGE, String.valueOf(page.getTotal()));
+        return page.getRecords();
+    }
+
+
 
     /**
      * 获取上下文中的分页参数
-     * 
+     *
      * @author haozi
      *
      */
@@ -36,30 +45,35 @@ public class PageParamContextHelper {
          * @return
          */
         public static Boolean hasPage() {
-            return Boolean.valueOf(MDC.get("hasPage"));
+            return Boolean.valueOf(MDC.get(WebConstant.HAS_PAGE));
         }
 
         /**
          * 获取当前查询的页码
-         * 
+         *
          * @return
          */
         public static Integer getPageNumer() {
-            return Integer.valueOf(MDC.get("pageNumber"));
+            return Integer.valueOf(MDC.get(WebConstant.PAGE_NUMBER));
         }
 
         /**
          * 获取当前设置的页面大小
-         * 
+         *
          * @return
          */
         public static Integer getPageSize() {
-            return Integer.valueOf(MDC.get("pageSize"));
+            return Integer.valueOf(MDC.get(WebConstant.PAGE_SIZE));
         }
 
-    }
-
-    public static void main(String[] args) {
+        /**
+         * 获取当前设置的页面大小
+         *
+         * @return
+         */
+        public static Long getTotalPage() {
+            return Long.valueOf(MDC.get(WebConstant.TOTAL_PAGE));
+        }
 
     }
 
