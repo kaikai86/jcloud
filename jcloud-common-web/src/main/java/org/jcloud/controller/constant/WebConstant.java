@@ -14,6 +14,8 @@ public interface WebConstant extends CommonConstant {
 
     /** {@code 200 OK} (HTTP/1.0 - RFC 1945) */
     Integer SC_OK_200 = 200;
+    /** {@code 400 Bad Request} (HTTP/1.0 - RFC 1945) */
+    Integer SC_BAD_REQUEST = 400;
     /** {@code 404 Not Found} (HTTP/1.0 - RFC 1945) */
     Integer SC_NOT_FOUND_404 = 404;
     /** {@code 404 Method not Allowed} (HTTP/1.0 - RFC 1945) */

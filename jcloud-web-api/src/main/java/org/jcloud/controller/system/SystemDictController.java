@@ -1,9 +1,14 @@
 package org.jcloud.controller.system;
 
-import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.jcloud.common.assertation.CommonAssert;
+import org.jcloud.common.enumeration.CommonErrorCodeEnum;
+import org.jcloud.common.exception.CommonException;
 import org.jcloud.controller.api.vo.Result;
+import org.jcloud.controller.api.vo.WrapMapper;
+import org.jcloud.controller.exception.WebException;
+import org.jcloud.model.system.query.SystemDictQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.jcloud.client.system.SystemDictService;
 import org.jcloud.controller.util.PageParamContextHelper;
@@ -21,31 +26,31 @@ public class SystemDictController {
     private SystemDictService systemDictService;
 
     @GetMapping("/dicts")
-    public Result<List<SystemDictPO>> findAll() {
-        List<SystemDictPO> systemDictPOS = PageParamContextHelper.endPage( systemDictService.selectAllPage(PageParamContextHelper.startPage(SystemDictPO.class)));
-        Result<List<SystemDictPO>> pageResult = new Result<>();
-        pageResult.setResult(systemDictPOS);
-        return pageResult;
+    public Result<List<SystemDictPO>> findAll(SystemDictQuery systemDictQuery) {
+        List<SystemDictPO> systemDictPOS = PageParamContextHelper.endPage(systemDictService.selectAllPage(PageParamContextHelper.startPage(SystemDictPO.class)));
+        return WrapMapper.ok(systemDictPOS);
     }
 
     @GetMapping("/dicts/{id}")
-    public SystemDictPO get(@PathVariable BigInteger id) {
-        return systemDictService.findOne(id);
+    public Result<SystemDictPO> get(@PathVariable BigInteger id) {
+        SystemDictPO one = systemDictService.findOne(id);
+        CommonAssert.isNull(one, CommonErrorCodeEnum.GL9999404);
+        return WrapMapper.ok(one);
     }
 
     @PostMapping("/dicts")
-    public Object save(@RequestBody SystemDictDTO systemDictDTO) {
-        return systemDictService.add(systemDictDTO);
+    public Result save(@Validated @RequestBody SystemDictDTO systemDictDTO) {
+        return WrapMapper.okOrFail(systemDictService.add(systemDictDTO));
     }
 
     @PutMapping("/dicts/{id}")
-    public Object update(@PathVariable BigInteger id,@RequestBody SystemDictDTO systemDictDTO) {
-       return systemDictService.update(id, systemDictDTO);
+    public Result update(@PathVariable BigInteger id, @RequestBody SystemDictDTO systemDictDTO) {
+       return WrapMapper.okOrFail(systemDictService.edit(id, systemDictDTO));
     }
 
     @DeleteMapping("/dicts/{id}")
-    public Object delete(@PathVariable BigInteger id) {
-        return systemDictService.delete(id);
+    public Result delete(@PathVariable BigInteger id) {
+        return WrapMapper.okOrFail(systemDictService.delete(id));
     }
 
 }

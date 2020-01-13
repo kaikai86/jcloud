@@ -19,9 +19,7 @@ public class PageParamContextHelper {
         if (!PageParam.hasPage()) {
             return new Page<PO>();
         }
-        Integer pageNumer = PageParam.getPageNumer();
-        Integer pageSize = PageParam.getPageSize();
-        return new Page<>(pageSize, pageNumer);
+        return new Page<>(PageParam.getPageSize(),PageParam.getPageNumer());
     }
 
     public static <PO> List<PO> endPage(Page<PO> page) {

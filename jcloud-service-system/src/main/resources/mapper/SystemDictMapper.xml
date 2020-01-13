@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jcloud.service.system.dao.SystemDictMapper">
+
+    <!-- 根据name查询所有字典信息 -->
+    <select id="querySystemDictByName" parameterType="String" resultType="org.jcloud.model.system.po.SystemDictPO">
+        SELECT *
+        FROM system_dict
+        WHERE name = #{name}
+    </select>
+
+</mapper>

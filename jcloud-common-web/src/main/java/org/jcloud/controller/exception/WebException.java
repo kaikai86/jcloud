@@ -1,19 +1,13 @@
 package org.jcloud.controller.exception;
 
-public class WebException extends RuntimeException {
-	private static final long serialVersionUID = 1L;
+import org.jcloud.common.exception.CommonException;
 
-	public WebException(String message){
-		super(message);
+public class WebException extends CommonException {
+
+	public WebException(int code, String message) {
+		super(code, message);
+
 	}
-	
-	public WebException(Throwable cause)
-	{
-		super(cause);
-	}
-	
-	public WebException(String message, Throwable cause)
-	{
-		super(message,cause);
-	}
+
+
 }

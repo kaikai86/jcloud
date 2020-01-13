@@ -1,4 +1,4 @@
-package org.jcloud.service;
+package org.jcloud.service.system;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

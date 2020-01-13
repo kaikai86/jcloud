@@ -1,5 +1,7 @@
 server:
-  port: 9700
+  port: 8700
+  error:
+    include-exception: true
 
 ## actuator 管理
 #management:
@@ -39,11 +41,18 @@ mybatis:
     map-underscore-to-camel-case: true
 
 mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml
   global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
     db-config:
       logic-delete-field: status  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
       logic-delete-value: D # 逻辑已删除值(默认为 1)
       logic-not-delete-value: A # 逻辑未删除值(默认为 0)
+      #主键类型  0:"数据库ID自增",1:"该类型为未设置主键类型", 2:"用户输入ID",3:"全局唯一ID (数字类型唯一ID)", 4:"全局唯一ID UUID",5:"字符串全局唯一ID (idWorker 的字符串表示)";
+      id-type: 0
+      # 默认数据库表下划线命名
+      table-underline: true
 
 info:
   app.name: service-system

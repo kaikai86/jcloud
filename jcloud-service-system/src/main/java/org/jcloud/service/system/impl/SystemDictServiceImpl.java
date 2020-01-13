@@ -1,4 +1,4 @@
-package org.jcloud.service.impl;
+package org.jcloud.service.system.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +7,9 @@ import org.jcloud.client.system.SystemDictService;
 import org.jcloud.model.system.dto.SystemDictDTO;
 import org.jcloud.model.system.po.SystemDictPO;
 import org.jcloud.service.base.BaseServiceImpl;
-import org.jcloud.service.dao.mapper.SystemDictMapper;
+import org.jcloud.service.system.dao.SystemDictMapper;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/system")
@@ -16,4 +18,8 @@ public class SystemDictServiceImpl extends BaseServiceImpl<SystemDictMapper,Syst
     @Autowired
     private SystemDictMapper systemDictMapper;
 
+    @Override
+    public List<SystemDictPO> querySystemDictByName(String name) {
+        return systemDictMapper.querySystemDictByName(name);
+    }
 }

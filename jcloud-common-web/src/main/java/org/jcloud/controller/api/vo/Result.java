@@ -1,105 +1,156 @@
 package org.jcloud.controller.api.vo;
 
-import lombok.Data;
-import org.jcloud.controller.constant.WebConstant;
-
 import java.io.Serializable;
 
+import lombok.Data;
+
 /**
- *   接口返回数据格式
- * @author scott
- * @email jeecgos@163.com
- * @date  2019年1月19日
+ * zk
+ * @param <T>
  */
 @Data
 public class Result<T> implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    /**
+     * 序列化标识
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 成功标志
-	 */
+    /**
+     * 成功码.
+     */
+    public static final int SUCCESS_CODE = 0;
+
+    /**
+     * 成功信息.
+     */
+    public static final String SUCCESS_MESSAGE = "操作成功！";
+
+    /**
+     * 失败码.
+     */
+    public static final int FAIL_CODE = -1;
+
+    /**
+     * 错误信息.
+     */
+    public static final String FAIL_MESSAGE = "操作失败！";
+
+
+    /**
+     * 成功标志
+     */
 //	@ApiModelProperty(value = "成功标志")
-	private boolean success = true;
+    private boolean success;
 
-	/**
-	 * 返回处理消息
-	 */
+    /**
+     * 返回处理消息
+     */
 //	@ApiModelProperty(value = "返回处理消息")
-	private String message = "操作成功！";
+    private String message;
 
-	/**
-	 * 返回代码
-	 */
+    /**
+     * 返回代码(成功代码为-1，失败代码为0 其他业务代码为>0)
+     */
 //	@ApiModelProperty(value = "返回代码")
-	private Integer code = 0;
-	
-	/**
-	 * 返回数据对象 data
-	 */
+    private Integer code;
+
+    /**
+     * 返回数据对象 data
+     */
 //	@ApiModelProperty(value = "返回数据对象")
-	private T result;
-	
-	/**
-	 * 时间戳
-	 */
+    private T result;
+
+    /**
+     * 时间戳
+     */
 //	@ApiModelProperty(value = "时间戳")
-	private long timestamp = System.currentTimeMillis();
+    private long timestamp = System.currentTimeMillis();
 
-	public Result() {
-		
-	}
-	
-	public Result<T> success(String message) {
-		this.message = message;
-		this.code = WebConstant.SC_OK_200;
-		this.success = true;
-		return this;
-	}
-	
-	
-	public static Result<Object> ok() {
-		return ok("操作成功");
-	}
-	
-	public static Result<Object> ok(String msg) {
-		Result<Object> r = new Result<Object>();
-		r.setSuccess(true);
-		r.setCode(WebConstant.SC_OK_200);
-		r.setMessage(msg);
-		return r;
-	}
-	
-	public static Result<Object> ok(Object data) {
-		Result<Object> r = new Result<Object>();
-		r.setSuccess(true);
-		r.setCode(WebConstant.SC_OK_200);
-		r.setResult(data);
-		return r;
-	}
-	
-	public static Result<Object> error(String msg) {
-		return error(WebConstant.SC_INTERNAL_SERVER_ERROR_500, msg);
-	}
-	
-	public static Result<Object> error(int code, String msg) {
-		Result<Object> r = new Result<Object>();
-		r.setCode(code);
-		r.setMessage(msg);
-		r.setSuccess(false);
-		return r;
-	}
 
-	public Result<T> error500(String message) {
-		this.message = message;
-		this.code = WebConstant.SC_INTERNAL_SERVER_ERROR_500;
-		this.success = false;
-		return this;
-	}
-	/**
-	 * 无权限访问返回结果
-	 */
-	public static Result<Object> noauth(String msg) {
-		return error(WebConstant.SC_JEECG_NO_AUTHZ, msg);
-	}
+
+
+    Result() {
+        this(true,SUCCESS_CODE , SUCCESS_MESSAGE);
+    }
+
+    Result(String message, T result) {
+        this(true,SUCCESS_CODE ,message,result);
+    }
+
+    Result(T result) {
+        this(true,SUCCESS_CODE , SUCCESS_MESSAGE,result);
+    }
+
+    /**
+     * Instantiates a new wrapper.
+     *
+     * @param code    the code
+     * @param message the message
+     */
+    Result(boolean success, int code, String message) {
+        this(success , code , message, null);
+    }
+
+    /**
+     * Instantiates a new wrapper.
+     *
+     * @param code    the code
+     * @param message the message
+     * @param result  the result
+     */
+    Result(boolean success, int code, String message, T result) {
+        super();
+        this.success(success).code(code).message(message).result(result);
+    }
+
+    /**
+     * Sets the 成功标志 , 返回自身的引用.
+     *
+     * @param success the new 成功标志
+     *
+     * @return the wrapper
+     */
+    private Result<T> success(boolean success) {
+        this.setSuccess(success);
+        return this;
+    }
+
+    /**
+     * Sets the 代码 , 返回自身的引用.
+     *
+     * @param code the new 编号
+     *
+     * @return the wrapper
+     */
+    private Result<T> code(int code) {
+        this.setCode(code);
+        return this;
+    }
+
+    /**
+     * Sets the 信息 , 返回自身的引用.
+     *
+     * @param message the new 信息
+     *
+     * @return the wrapper
+     */
+    private Result<T> message(String message) {
+        this.setMessage(message);
+        return this;
+    }
+
+    /**
+     * Sets the 结果数据 , 返回自身的引用.
+     *
+     * @param result the new 结果数据
+     *
+     * @return the wrapper
+     */
+    public Result<T> result(T result) {
+        this.setResult(result);
+        return this;
+    }
+
 }
+

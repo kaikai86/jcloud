@@ -5,7 +5,9 @@ spring:
     throw-exception-if-no-handler-found: true
     static-path-pattern: /statics/**
 server:
-  port: 8080
+  port: 9090
+  error:
+    include-exception: true
 
 ##eureka
 eureka:
