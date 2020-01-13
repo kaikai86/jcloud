@@ -2,6 +2,7 @@ package org.jcloud.service.base;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.jcloud.common.exception.CommonException;
 import org.jcloud.model.base.DataModel;
+import org.jcloud.model.system.po.SystemDictPO;
 import org.jcloud.service.exception.ServiceException;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -68,7 +70,11 @@ public class BaseServiceImpl<M extends BaseMapper<PO>,DTO,PO extends DataModel> 
 
     @Override
     public Page<PO> selectAllPage(Page<PO> page) {
-        return this.page(page);
+        QueryWrapper<PO> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("id","name","orders");
+        queryWrapper.eq("name","kaikai188");
+        return this.page(page, queryWrapper);
+//        return this.page(page);
     }
 
     @Override

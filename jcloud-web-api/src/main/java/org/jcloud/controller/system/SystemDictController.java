@@ -1,5 +1,6 @@
 package org.jcloud.controller.system;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.jcloud.common.assertation.CommonAssert;
 import org.jcloud.common.enumeration.CommonErrorCodeEnum;
 import org.jcloud.common.exception.CommonException;
@@ -27,6 +28,7 @@ public class SystemDictController {
 
     @GetMapping("/dicts")
     public Result<List<SystemDictPO>> findAll(SystemDictQuery systemDictQuery) {
+
         List<SystemDictPO> systemDictPOS = PageParamContextHelper.endPage(systemDictService.selectAllPage(PageParamContextHelper.startPage(SystemDictPO.class)));
         return WrapMapper.ok(systemDictPOS);
     }

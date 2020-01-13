@@ -17,9 +17,4 @@ public class SystemDictServiceImpl extends BaseServiceImpl<SystemDictMapper,Syst
 
     @Autowired
     private SystemDictMapper systemDictMapper;
-
-    @Override
-    public List<SystemDictPO> querySystemDictByName(String name) {
-        return systemDictMapper.querySystemDictByName(name);
-    }
 }

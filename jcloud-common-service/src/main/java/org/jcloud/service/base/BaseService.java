@@ -30,7 +30,7 @@ public interface BaseService<DTO,PO extends DataModel> {
     @RequestMapping(value="/selectAll",method = RequestMethod.GET)
     List<PO> selectAll();
 
-    @RequestMapping(value="/selectAllPage",method = RequestMethod.GET)
+    @RequestMapping(value="/selectAllPage",method = RequestMethod.POST)
     Page<PO> selectAllPage(@RequestBody Page<PO> page);
 
     @RequestMapping(value = "/selectAllPageQueryAllEq", method = RequestMethod.POST)
