@@ -16,7 +16,7 @@ import java.util.Map;
 public interface BaseService<DTO,PO extends DataModel> {
 
     @RequestMapping(value="/add",method = RequestMethod.POST)
-    boolean add(@RequestBody  DTO dto) throws CommonException;
+    boolean add(@RequestBody  DTO dto);
 
     @RequestMapping(value="/update",method = RequestMethod.PUT)
     boolean edit(@RequestParam("id") BigInteger id,@RequestBody DTO dto);
