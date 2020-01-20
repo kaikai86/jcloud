@@ -4,7 +4,7 @@ package org.jcloud.controller.api.vo;
 import org.jcloud.controller.constant.WebConstant;
 
 /**
- *
+ *  封装打包返回类
  */
 public class WrapMapper {
 

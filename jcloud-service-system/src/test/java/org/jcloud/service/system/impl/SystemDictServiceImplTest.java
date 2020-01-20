@@ -1,6 +1,7 @@
 package org.jcloud.service.system.impl;
 
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.jcloud.client.system.SystemDictService;
 import org.jcloud.model.system.po.SystemDictPO;
 import org.jcloud.service.system.dao.SystemDictMapper;
@@ -23,8 +24,10 @@ public class SystemDictServiceImplTest {
     @Test
     public void testXmlSql() {
         System.out.println(("----- selectAll method test ------"));
-        List<SystemDictPO> dictList = systemDictService.selectAll();
-        for (SystemDictPO systemDictPO : dictList) {
+        Page<SystemDictPO> pageTest = new Page<>(1, 3);
+        Page<SystemDictPO> kaikai188 = systemDictMapper.querySystemDictByName(pageTest, null);
+        System.err.println(kaikai188.getTotal());
+        for (SystemDictPO systemDictPO : kaikai188.getRecords()) {
             System.err.println(JSONUtil.toJsonStr(systemDictPO));
         }
     }

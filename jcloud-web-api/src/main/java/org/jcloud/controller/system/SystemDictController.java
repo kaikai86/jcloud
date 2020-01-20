@@ -1,11 +1,14 @@
 package org.jcloud.controller.system;
 
+import cn.hutool.core.comparator.PinyinComparator;
+import cn.hutool.core.util.PinyinUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.jcloud.common.assertation.CommonAssert;
 import org.jcloud.common.enumeration.CommonErrorCodeEnum;
 import org.jcloud.common.exception.CommonException;
 import org.jcloud.controller.api.vo.Result;
 import org.jcloud.controller.api.vo.WrapMapper;
+import org.jcloud.controller.assertation.WebAssert;
 import org.jcloud.controller.exception.WebException;
 import org.jcloud.model.system.query.SystemDictQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +31,6 @@ public class SystemDictController {
 
     @GetMapping("/dicts")
     public Result<List<SystemDictPO>> findAll(SystemDictQuery systemDictQuery) {
-
         List<SystemDictPO> systemDictPOS = PageParamContextHelper.endPage(systemDictService.selectAllPage(PageParamContextHelper.startPage(SystemDictPO.class)));
         return WrapMapper.ok(systemDictPOS);
     }
@@ -36,7 +38,7 @@ public class SystemDictController {
     @GetMapping("/dicts/{id}")
     public Result<SystemDictPO> get(@PathVariable BigInteger id) {
         SystemDictPO one = systemDictService.findOne(id);
-        CommonAssert.isNull(one, CommonErrorCodeEnum.GL9999404);
+        WebAssert.isNull(one, CommonErrorCodeEnum.GL9999404);
         return WrapMapper.ok(one);
     }
 
@@ -46,7 +48,7 @@ public class SystemDictController {
     }
 
     @PutMapping("/dicts/{id}")
-    public Result update(@PathVariable BigInteger id, @RequestBody SystemDictDTO systemDictDTO) {
+    public Result update(@PathVariable BigInteger id, @Validated @RequestBody SystemDictDTO systemDictDTO) {
        return WrapMapper.okOrFail(systemDictService.edit(id, systemDictDTO));
     }
 

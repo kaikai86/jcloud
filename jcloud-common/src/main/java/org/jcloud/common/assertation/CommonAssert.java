@@ -1,7 +1,6 @@
 package org.jcloud.common.assertation;
 
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import org.jcloud.common.enumeration.CommonErrorCodeEnum;
 import org.jcloud.common.exception.CommonException;
 
@@ -9,17 +8,34 @@ public class CommonAssert {
 
 
     /**
-     * TODO 判断是否一致
-     * @param obj1 	预期结果只
+     * 判断是否一致
+     * @param obj1 	预期结果
      * @param obj2	判断值
      * @param codeEnum  错误码
      * @param args
      */
     public static void theSame(Object obj1, Object obj2, CommonErrorCodeEnum codeEnum, Object... args) {
-        if(obj1 == null) {
-            throw new CommonException(CommonErrorCodeEnum.GL99990100, args);
-        }
         if(!obj1.equals(obj2)) {
+            throw new CommonException(codeEnum, args);
+        }
+    }
+
+    /**
+     * 判断是否一致
+     * @param obj1 	预期结果只
+     * @param obj2	判断值
+     */
+    public static void theSame(Object obj1, Object obj2, CommonException commonException) {
+        if(!obj1.equals(obj2)) {
+            throw commonException;
+        }
+    }
+
+    /**
+     * 为null
+     */
+    public static void notNull(Object object, CommonErrorCodeEnum codeEnum, CommonException commonException, Object... args) {
+        if (object != null) {
             throw new CommonException(codeEnum, args);
         }
     }
@@ -27,9 +43,18 @@ public class CommonAssert {
     /**
      * 为null
      */
-    public static void notNull(Object object, CommonErrorCodeEnum codeEnum, Object... args) {
+    public static void notNull(Object object,  CommonException commonException) {
         if (object != null) {
-            throw new CommonException(codeEnum, args);
+            throw commonException;
+        }
+    }
+
+    /**
+     * 不为null
+     */
+    public static void isNull(Object object,  CommonException commonException) {
+        if (ObjectUtil.isNull(object) || "undefined".equals(object)) {
+            throw commonException;
         }
     }
 
@@ -52,6 +77,15 @@ public class CommonAssert {
         }
     }
 
+    /**
+     * 为false
+     */
+    public static void notTrue(boolean flag, CommonException commonException) {
+        if (!flag) {
+            throw commonException;
+        }
+    }
+
 
     /**
      * 为true
@@ -59,6 +93,15 @@ public class CommonAssert {
     public static void isTrue(boolean flag, CommonErrorCodeEnum codeEnum, Object... args) {
         if (flag) {
             throw new CommonException(codeEnum, args);
+        }
+    }
+
+    /**
+     * 为true
+     */
+    public static void isTrue(boolean flag, CommonException commonException) {
+        if (flag) {
+            throw commonException;
         }
     }
 

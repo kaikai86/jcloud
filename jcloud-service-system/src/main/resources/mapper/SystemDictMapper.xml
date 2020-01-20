@@ -6,7 +6,9 @@
     <select id="querySystemDictByName" parameterType="String" resultType="org.jcloud.model.system.po.SystemDictPO">
         SELECT *
         FROM system_dict
-        WHERE name = #{name}
+        <if test="name !=null and name !=''">
+            WHERE name = #{name}
+        </if >
     </select>
 
 </mapper>
