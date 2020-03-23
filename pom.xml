@@ -13,6 +13,7 @@
     <module>jcloud-common-client</module>
     <module>jcloud-web-api</module>
     <module>jcloud-eureka-server</module>
+    <module>jcloud-zuul-proxy</module>
   </modules>
 
   <parent>

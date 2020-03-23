@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: zuul-proxy
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+server:
+  port: 8080
+#  超时时间6000小时
+#  servlet:
+#    session:
+#      timeout: PT6000M
+
+##eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka
+  instance:
+    instance-id: gateway-8080.com
+    prefer-ip-address: true
+
+#路由
+zuul:
+#  ignored-services: "*"
+  prefix: /jcloud-zuul-proxy
+  routes:
+    baidu:
+      path: /baidu/**
+      url: https://www.baidu.com
+    webapi.serviceId: web-manager
+    webapi.path: /web-api/**
+  max:
+    host:
+      connections: 500
+
+
+info:
+  app.name: zuul-proxy
+  company.name: org.jcloud
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
+
