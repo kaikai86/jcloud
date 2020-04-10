@@ -14,6 +14,7 @@
     <module>jcloud-web-api</module>
     <module>jcloud-eureka-server</module>
     <module>jcloud-zuul-proxy</module>
+    <module>jcloud-wechat-api</module>
   </modules>
 
   <parent>
@@ -24,7 +25,7 @@
   </parent>
 
 
-  <groupId>org.jcloud</groupId>
+  <groupId>cn.org.jcloud</groupId>
   <artifactId>jcloud-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>

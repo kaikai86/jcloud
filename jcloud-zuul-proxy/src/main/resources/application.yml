@@ -31,6 +31,8 @@ zuul:
       url: https://www.baidu.com
     webapi.serviceId: web-manager
     webapi.path: /web-api/**
+    wechatapi.serviceId: wechat-manager
+    wechatapi.path: /wechat-api/**
   max:
     host:
       connections: 500

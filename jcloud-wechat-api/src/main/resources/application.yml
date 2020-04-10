@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: wechat-manager
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /statics/**
+server:
+  port: 9100
+  error:
+    include-exception: true
+
+##eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka
+  instance:
+    instance-id: wechat-manager
+    prefer-ip-address: true
+
+info:
+  app.name: wechat-manager
+  company.name: org.jcloud
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
+
+
+## weixin
+weixin:
+  appid: wx5d57f2472e4236f1
+  secret: bd19ee0342c53bb05a8adfcc5152cae5
+  encodingaeskey: vtS3YUxauSP3ZovKj46Hj61tqDFjtQmHSIujRMOoJw0
+  token: huabaide666888

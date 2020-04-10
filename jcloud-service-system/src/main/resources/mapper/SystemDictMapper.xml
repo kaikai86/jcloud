@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.jcloud.service.system.dao.SystemDictMapper">
+<mapper namespace="cn.org.jcloud.service.system.dao.SystemDictMapper">
 
     <!-- 根据name查询所有字典信息 -->
-    <select id="querySystemDictByName" parameterType="String" resultType="org.jcloud.model.system.po.SystemDictPO">
+    <select id="querySystemDictByName" parameterType="String" resultType="cn.org.jcloud.model.system.po.SystemDictPO">
         SELECT *
         FROM system_dict
         <if test="name !=null and name !=''">
             WHERE name = #{name}
         </if >
     </select>
+    <select id="getByOrders" resultType="cn.org.jcloud.model.system.po.SystemDictPO"/>
 
 </mapper>
